@@ -1,4 +1,4 @@
-<html style="background-color:black; text-align: center; padding-top: 30;"> 
+<html style="background-color:black; text-align: center; padding-top: 40;"> 
 <body> 
 <style>
     .myButton {
@@ -24,8 +24,19 @@
         .myButton:active {
         background: #000000; }
 
+    .responsiveVideo{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    @media (min-width: 768px ) {
+        .responsiveVideo{
+            width: 50%;
+        }
+    }
+
 </style>
-<video id="video" width="50%" playsinline loop >
+<video class="responsiveVideo" id="video" width="50%" playsinline loop >
   <source src="yb_crf35_x254.mp4" type="video/mp4">
 </video> 
 <div style="text-align:center; padding-top: 50"> 
