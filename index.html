@@ -1,29 +1,7 @@
 <html style="background-color:black; text-align: center; padding-top: 40;"> 
 <body> 
 <style>
-    .myButton {
-        color: rgb(255, 255, 255); 
-        font-size: 40px; 
-        line-height: 40px; 
-        padding: 30px; 
-        border-radius: 0px; 
-        font-family: Georgia, serif; 
-        font-weight: 400; 
-        text-decoration: none; 
-        font-style: normal; 
-        font-variant: normal; 
-        text-transform: none;
-        letter-spacing: 10px;
-        word-spacing: 4px; 
-        background-image: linear-gradient(to right, rgb(27, 21, 27) 0%, rgb(47, 47, 47) 100%); 
-        box-shadow: rgba(0, 0, 0, 0.5) -7px 4px 49px 0px inset; 
-        border: 2px solid rgb(0, 0, 0); 
-        display: inline-block;}
-        .myButton:hover {
-        background: #333333; }
-        .myButton:active {
-        background: #000000; }
-
+  
     .responsiveVideo{
         width: 95%;
         max-width: 95%;
@@ -35,30 +13,59 @@
         }
     }
 
+    .playpauseButton{
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .playpauseButton .play-img{
+      display: block;
+      width: 96px;
+      max-width: 18vw;
+      background: transparent;
+    }
+
 </style>
 <video class="responsiveVideo" id="video" playsinline loop >
   <source src="yb_crf35_x254.mp4" type="video/mp4">
 </video> 
-<div style="text-align:center; padding-top: 50"> 
-  <button class="myButton" onclick="playPause()">  play  </button> 
+
+<div style="padding-top: 30px;">
+  <button class="playpauseButton" onclick="playPause()">
+    <img id="playBtnImg" src="play2.png" alt="Play" class="play-img">
+  </button>
   <br><br>
 </div>
 
 <script>
-    var myVideo = document.getElementById("video"); 
+  var myVideo = document.getElementById("video");
+  var playImg = document.getElementById("playBtnImg");
 
-function playPause() { 
-  if (myVideo.paused) 
-    myVideo.play(); 
-  else 
-    myVideo.pause(); 
-} 
+  function updateButton() {
+    if (myVideo.paused) {
+      playImg.src = "play2.png";
+      playImg.alt = "Play";
+    } else {
+      playImg.src = "pause2.png";
+      playImg.alt = "Pause";
+    }
+  }
 
-myVideo[0].onended = function () {
-  this.load();
-  this.play();
-};
+  function playPause() {
+    if (myVideo.paused) {
+      myVideo.play();
+    } else {
+      myVideo.pause();
+    }
+    updateButton();
+  }
 
+  myVideo.addEventListener("ended", function () {
+    this.load();
+    this.play();
+  });
 </script>
 </body>
 </html>
